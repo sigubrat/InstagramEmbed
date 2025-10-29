@@ -1,4 +1,7 @@
 {
+  "name": "instagram-embed-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot that fetches and embeds Instagram posts.",
   "dependencies": {
     "discord.js": "^14.24.1"
   },

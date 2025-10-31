@@ -2,7 +2,42 @@ import { Collection, Events, MessageFlags } from "discord.js";
 
 export const name = Events.InteractionCreate;
 export async function execute(interaction: any) {
-  if (!interaction.isChatInputCommand()) return; // Ignore non-chat input commands
+  // Handle button interactions for "Show original" functionality
+  if (interaction.isButton() && interaction.customId.startsWith('show_original_')) {
+    try {
+      const message = interaction.message;
+      const originalContent = (message as any).originalContent;
+      const modifiedContent = (message as any).modifiedContent;
+      const authorId = (message as any).authorId;
+
+      if (originalContent && modifiedContent && authorId) {
+        const updatedMessage = 
+          `<@${authorId}> sent:\n` +
+          `Original: ${originalContent}\n` +
+          `Embed: ${modifiedContent}`;
+
+        await interaction.update({
+          content: updatedMessage,
+          components: [], // Remove the button after showing original
+          allowedMentions: { parse: ['users'] }
+        });
+      } else {
+        await interaction.reply({
+          content: "Sorry, I couldn't retrieve the original message data.",
+          flags: MessageFlags.Ephemeral
+        });
+      }
+    } catch (error) {
+      console.error("Error handling show original button:", error);
+      await interaction.reply({
+        content: "There was an error showing the original message.",
+        flags: MessageFlags.Ephemeral
+      });
+    }
+    return;
+  }
+
+  if (!interaction.isChatInputCommand()) return;
 
   const command = interaction.client.commands.get(interaction.commandName);
 

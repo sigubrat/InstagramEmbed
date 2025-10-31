@@ -24,7 +24,7 @@ const client = new IClient({
     activities: [
       {
         type: ActivityType.Custom,
-        name: "Worshiping the machine spirit",
+        name: "Preparing to embed your reels",
       },
     ],
     status: "online",

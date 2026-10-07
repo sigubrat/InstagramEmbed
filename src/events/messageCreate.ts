@@ -14,16 +14,16 @@ export async function execute(message: Message) {
   // Ignore messages from bots to prevent loops
   if (message.author.bot) return;
 
-  // Check if the message contains Instagram reel URLs that start with www.instagram.com/reel
-  const instagramReelRegex = /www\.instagram\.com\/reel/gi;
-  const embedPrefix = process.env.EMBED_PREFIX || "kk";
+  // Check if the message contains Instagram reel or post URLs (www.instagram.com/reel or www.instagram.com/p/)
+  const instagramUrlRegex = /www\.instagram\.com\/(reel|p\/)/i;
+  const embedDomain = process.env.EMBED_DOMAIN || "kirkstagram.com";
 
-  if (instagramReelRegex.test(message.content)) {
+  if (instagramUrlRegex.test(message.content)) {
     try {
       const originalContent = message.content;
       const modifiedContent = message.content.replace(
         /www\.instagram\.com/gi,
-        `www.${embedPrefix}instagram.com`
+        `www.${embedDomain}`
       );
 
       const initialMessage = `<@${message.author.id}> sent:\n${modifiedContent}`;

@@ -1,12 +1,12 @@
 # Instagram URL Replacer Bot
 
-A Discord bot that automatically detects Instagram reel URLs starting with `www.instagram.com/reel` and replaces them with `www.kkinstagram.com/reel` URLs to ensure embedding so you don't have to open the instagram app to see your friends' reels.
+A Discord bot that automatically detects Instagram reel and post URLs (`www.instagram.com/reel` and `www.instagram.com/p/`) and replaces them with `www.kirkstagram.com` URLs to ensure embedding so you don't have to open the instagram app to see your friends' reels and posts.
 
 ## Features
 
 - Monitors all messages in servers where the bot has access
-- Detects Instagram reel URLs that start with `www.instagram.com/reel`
-- Automatically replaces `www.instagram.com` with `www.kkinstagram.com`
+- Detects Instagram reel URLs (`www.instagram.com/reel`) and post URLs (`www.instagram.com/p/`)
+- Automatically replaces `www.instagram.com` with `www.kirkstagram.com` (override with the `EMBED_DOMAIN` environment variable)
 - Deletes the original message (if bot has permissions) and posts the modified URL
 - Ignores messages from bots to prevent loops
 

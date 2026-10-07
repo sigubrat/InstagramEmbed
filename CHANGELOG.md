@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0]
+
+### Added
+- Instagram post URLs (`www.instagram.com/p/`) are now embedded in addition to reels
+
+### Changed
+- Embeds now use `www.kirkstagram.com` instead of `www.kkinstagram.com`
+- Replaced the `EMBED_PREFIX` environment variable with `EMBED_DOMAIN` (defaults to `kirkstagram.com`)
+
 ## [1.1.0] - 2025-10-31
 
 ### Added
